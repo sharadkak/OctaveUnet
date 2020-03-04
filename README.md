@@ -1,11 +1,14 @@
-# Cityscapes-Semantic-Segmentation
+## Cityscapes-Semantic-Segmentation
 
-This repository contains the semantic segmentation implementation in pytorch on cityscapes dataset. 
+This repository contains the semantic segmentation implementation on cityscapes dataset in pytorch. 
+
+### Model
+
+Encoder-decoder style networks, Unet (https://arxiv.org/abs/1505.04597) and Unet with octave convolution (https://arxiv.org/abs/1904.05049) are implemented. Octave convolutions (https://arxiv.org/abs/1904.05049) use high and low frequency maps to extract respective information from the image, they also have less parameters compared to vanilla convolutions. In octave convolutions, channels dimension could be controlled using alpha, which is 0.5 here, means there are equal number of channels in both low and high frquency feature maps. It was noticed that Unet with octave convolutions takes nearly 2 GB less GPU memory and give almost same performance as former. 
 
 ### Training
 
-Training is done with Unet architecture, however this implementation, unlike actual paper, uses padding in convolution operations to keep the feature maps size same and Transpose convolution operations are used to increase the spatial size of feature maps in decoder.
-Also the network is trained using only four classes, Road, Car, sky, background. Hence masks contains only these classes. 
+The network is trained using only four classes, Road, Car, sky, background. Hence masks contains only these classes. 
 
 ### Loss
 
